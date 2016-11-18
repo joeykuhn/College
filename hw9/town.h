@@ -20,7 +20,7 @@ const int TOWN_MAX_SIZE = 25;
 class Town{
   private:
     //the actual character array holding all of the objects.
-    char m_grid[TOWN_MAX_SIZE][TOWN_MAX_SIZE];
+    int m_grid[TOWN_MAX_SIZE][TOWN_MAX_SIZE];
     // the actual size of the array that is being used
     short m_size;
 
@@ -51,7 +51,7 @@ class Town{
     // Purpose: An accessor function that can be used to see values
     // at the requested place on the grid.
     //////////
-    char getTile(char x, char y) const {return m_grid[x][y];}
+    int getTile(int x, int y) const {return m_grid[x][y];}
 
     //////////
     // Preconditions: the town object should be built. x and y should
@@ -62,7 +62,7 @@ class Town{
     // Purpose: a Mutator function that changes a character in the
     // grid at the referenced point to the tile that is passed to it.
     //////////
-    void setTile(int x, int y, char tile);
+    void setTile(int x, int y, int tile);
 
     //////////
     //Precondition: Town should be built before now.

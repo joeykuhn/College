@@ -27,12 +27,12 @@ class Polluter
     int m_y;
 
     // The representation of the polluter on the grid
-    char m_representation;
+    int m_representation;
 
   public:
     // Default constructor that sets the name to the parameter passed to it
     // and the representation passed to it, defaulting to 'P'.
-    Polluter(string name, char representation = 'P')
+    Polluter(string name, int representation = 'P')
     {
       m_name = name;
       m_representation = representation;

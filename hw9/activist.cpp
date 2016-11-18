@@ -41,21 +41,20 @@ void Activist::randMove(Town &town)
 
 bool Activist::move(int choice, Town &town)
 {
-    char finalMove;
     // gets the tile north of the activist.
-    char north = town.getTile(m_x, m_y+1);
+    int north = town.getTile(m_x, m_y+1);
 
     //gets the tile south of the activist.
-    char south = town.getTile(m_x,m_y-1);
+    int south = town.getTile(m_x,m_y-1);
 
     // gets the tile east of the activist
-    char east = town.getTile(m_x+1, m_y);
+    int east = town.getTile(m_x+1, m_y);
 
     //gets the tile west of the activist
-    char west = town.getTile(m_x-1, m_y);
+    int west = town.getTile(m_x-1, m_y);
 
     //puts all of the directions into an array that works with the choice variable.
-    char directions[4] = {north, south, east, west};
+    int directions[4] = {north, south, east, west};
 
     if (directions[choice] != '.')
         // if the direction chosen is an obstacle, return false.

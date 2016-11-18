@@ -28,7 +28,7 @@ private:
   ///// the y coordinate of the activist
   int m_y;
   ///// the representation of the activist on the grid
-  char m_representation;
+  int m_representation;
   ///// the state of the activist
   string m_state;
   ///// the name of the activist
@@ -38,7 +38,7 @@ public:
   ///// Default constructor of the activist that takes a name
   // as the parameter and sets m_name equal to it, as well as
   // taking the representation as input but defaulting to 'A'.
-  Activist(string name, char representation = 'A')
+  Activist(string name, int representation = 'A')
   {
     m_toxicity = .5;
     m_dignity = 100;

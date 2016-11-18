@@ -51,7 +51,7 @@ Town::Town(const int size)
   build();
 }
 
-void Town::setTile(int x, int y, char tile)
+void Town::setTile(int x, int y, int tile)
 { ///// sets the specific location on m_grid to tile.
   m_grid[x][y] = tile;
   return;

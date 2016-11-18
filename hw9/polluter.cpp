@@ -41,20 +41,19 @@ void Polluter::randMove(Town &town)
 
 bool Polluter::move(int choice, Town &town)
 {
-    char finalMove;
-    char north = town.getTile(m_x, m_y+1);
+    int north = town.getTile(m_x, m_y+1);
     // gets the tile north of the polluter.
 
-    char south = town.getTile(m_x,m_y-1);
+    int south = town.getTile(m_x,m_y-1);
     //gets the tile south of the polluter.
 
-    char east = town.getTile(m_x+1, m_y);
+    int east = town.getTile(m_x+1, m_y);
     // gets the tile east of the polluter
 
-    char west = town.getTile(m_x-1, m_y);
+    int west = town.getTile(m_x-1, m_y);
     //gets the tile west of the polluter
 
-    char directions[4] = {north, south, east, west};
+    int directions[4] = {north, south, east, west};
     //puts all of the directions into an array that works with the choice variable.
 
     if (directions[choice] != '.')
