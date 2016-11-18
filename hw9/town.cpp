@@ -20,15 +20,15 @@ void Town::build()
   for (int i = 0; i < m_size; i++
   {
     m_grid[0][i] = 'W';
-    m_grid[m_size-1][i] = 'W';
+    m_grid[m_size-1][i] = 'W';   
     m_grid[i][0] = 'W';
-    m_grid[i][m_size-1] = 'W';
-  }
+    m_grid[i][m_size-1] = 'W';  
+  } 
   m_grid[0][m_size/2] = 'E';
   m_grid[m_size-1][m_size/2] = 'E';
   m_grid[m_size/2][0] = 'E';
   m_grid[m_size/2][m_size-1] = 'E';
-  return;
+  return; 
 }
 
 Town::Town(const int size)
@@ -36,12 +36,6 @@ Town::Town(const int size)
   m_size = size;
   clear();
   build();
-}
-
-void Town::setTile(char x, char y, char tile)
-{
-  m_grid[x][y] = tile;
-  return;
 }
 
 ostream& operator<<(ostream &outs, const Town a)
@@ -54,3 +48,5 @@ ostream& operator<<(ostream &outs, const Town a)
   }
   return outs;
 }
+
+

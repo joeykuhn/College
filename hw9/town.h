@@ -8,17 +8,14 @@ const int TOWN_MAX_SIZE = 25;
 
 class Town{
   private:
-  char m_grid[TOWN_MAX_SIZE][TOWN_MAX_SIZE];
+  char m_grid[TOWN_MAX_SIZE][TOWN_MAX_SIZE];  
   int m_size;
-
+  
   void clear();
-  void build();
+  void build();  
 
   public:
   Town(const int size = TOWN_MAX_SIZE);
-
- char getTile(char x, char y) const {return m_grid[x][y];}
- void setTile(char x, char y, char tile);
 
   friend ostream & operator<<(ostream &outs,const Town &a);
   int getSize() const{return m_size;}
