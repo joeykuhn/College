@@ -1,7 +1,7 @@
 #ifndef POLLUTER_H
 #define POLLUTER_H
 
-class POLLUTER
+class Polluter
 {
   private:
     string m_name;
@@ -18,7 +18,10 @@ class POLLUTER
       m_y = -1;
     }
 
-    void placeMe();
+    void placeMe(const Town &town);
+    void randMove(const Town &town);
+
+
 }
 
 #endif
