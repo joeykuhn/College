@@ -12,17 +12,12 @@
     }
 
     tempArray = new T  [m_max*2];
-    std::cout << "Before growing, m_size is " << m_size << std::endl;
     for (int i = 0; i < m_size; i++)
     {
       tempArray[i] = m_data[i];
-      std::cout << "Putting " << m_data[i] << " into tempArray" << std::endl;
     }
     delete[] m_data;
-    std::cout << "m_data deleted[]" << std::endl;
     m_data = tempArray;
-
-    std::cout << "m_data = tempArray" << std::endl;
     m_max *= 2;
 
     tempArray = NULL;
@@ -46,7 +41,7 @@
 
     m_max /= 2;
 
-    delete tempArray;
+    tempArray = NULL;
 
     return;
   }
@@ -66,11 +61,8 @@
     m_size = rhs.m_size;
     m_max = rhs.m_max;
     m_data = new T [rhs.m_max];
-    std::cout << "rhs.m_size before assigning is " << rhs.m_size << std::endl;
-    std::cout << "m_size before assigning is " << m_size << std::endl;
     for (int i = 0; i < rhs.m_size; i++)
     {
-      std::cout << "Copying " << rhs.m_data[i] << "." << std::endl;
       m_data[i] = rhs.m_data[i];
     }
 
@@ -80,12 +72,13 @@
   template <typename T>
   ArrayList<T>::ArrayList(const ArrayList<T>& cpy)
   {
-    for (int i = 0; i < cpy.m_size; i++)
+    m_data = new T [cpy.max()];
+    for (int i = 0; i < cpy.size(); i++)
     {
       m_data[i] = cpy.m_data[i];
     }
-    m_size = cpy.m_size;
-    m_max = cpy.m_max;
+    m_size = cpy.size();
+    m_max = cpy.max();
   }
 
   template <typename T>
@@ -97,12 +90,20 @@
   template<typename T>
   const T& ArrayList<T>::first() const
   {
+
+    if (m_size == 0)
+      return m_errobj;
+
     return (m_data[0]);
   }
 
   template <typename T>
   T& ArrayList<T>::operator[](int i)
   {
+    if (i > m_size)
+      std::cout << "!-- ERROR : PANIC in ARRAYLIST!!.[]  (index out of bounds)" << std::endl;
+      return m_errobj;
+
     return (m_data[i]);
   }
 
@@ -130,7 +131,6 @@
     m_max = 0;
     m_size = 0;
     delete[] m_data;
-    delete m_data;
     m_data = NULL;
     return;
   }
@@ -152,27 +152,42 @@
   template <typename T>
   void ArrayList<T>::insert(const T& x, int i)
   {
-    m_size++;
-    if (m_size > m_max)
+
+    if ( i > m_size)
+    {
+      std::cout << "!-- ERROR : PANIC in ARRAYLIST!!.insert()  (index out of bounds)" << std::endl;
+      return;
+    }
+
+    if (m_size == m_max)
     {
       grow();
     }
+    for (int j = (m_size - 1); j >= i; j--)
+    {
+      m_data[j+1] = m_data[j];
+    }
     m_data[i] = x;
+    m_size++;
     return;
   }
 
   template <typename T>
   void ArrayList<T>::remove(int i)
   {
+    if (i > m_size)
+    {
+      std::cout <<  "!-- ERROR : PANIC in ARRAYLIST!!.remove()  (index out of bounds)" << std::endl;
+    }
     if (m_size < (m_max/4))
     {
       shrink();
     }
-    for (int j = i; j < (m_size+1); j++)
+    for (int j = i; j < (m_size); j++)
     {
       m_data[j] = m_data[j+1];
     }
-    m_data[m_size] = NULL;
+
     m_size--;
     return;
   }
@@ -180,6 +195,12 @@
   template <typename T>
   void ArrayList<T>::swap(int i, int k)
   {
+    if (i > m_size || k > m_size || i < 0 || k < 0)
+    {
+      std::cout <<  "!-- ERROR : PANIC in ARRAYLIST!!.swap()  (index out of bounds)" << std::endl;
+      return;
+    }
+
     T temp;
     temp = m_data[i];
     m_data[i] = m_data[k];
@@ -192,7 +213,7 @@
   void ArrayList<T>::append(const ArrayList<T>& alist)
   {
 
-    for (int i = 0; i < alist.m_data; i++)
+    for (int i = 0; i < alist.size(); i++)
     {
 
         if (m_size == m_max)
