@@ -45,20 +45,16 @@ int main()
 
       else if (t == "{" || t == "(" || t == "[")
       {
-        std::cout << "t is " << t << "and in brackstack" << std::endl;
         t = t.c_str();
         brackStack.push(t[0]);
       }
       else if(t == "+" || t == "-" || t == "*" || t == "/" || t == "%")
       {
-        std::cout << "t is " << t << "and in operstack" << std::endl;
         t = t.c_str();
         operStack.push(t[0]);
       }
       else
       {
-        std::cout << "t is " << t << "and in intstack" << std::endl;
-
         intStack.push(atoi(t.c_str()));
       }
     }
@@ -70,6 +66,7 @@ int main()
     else
     {
       std::cout << "#" << numRuns << " : INVALID!" << std::endl;
+      numRuns++;
     }
     intStack.clear();
     operStack.clear();
@@ -85,19 +82,14 @@ int calculate(const int x, const int y, const char& z)
   switch (z)
   {
     case '+':
-        std::cout << "+calculated " << (x+y) << std::endl;
         return (x+y);
     case '-':
-        std::cout << "-calculated " << (x-y) << std::endl;
         return (x-y);
     case '*':
-        std::cout << "*calculated " << (x*y) << std::endl;
         return (x*y);
     case '/':
-        std::cout << "/calculated " << (x/y) << std::endl;
         return (x/y);
     case '%':
-        std::cout << "%calculated " << (x%y) << std::endl;
         return (x%y);
   }
 }
