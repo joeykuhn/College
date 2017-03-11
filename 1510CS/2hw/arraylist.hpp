@@ -1,6 +1,10 @@
+/*
+Programmer: Joey Kuhn
+Teacher: Patrick Taylor
+Date: 02/10/2017
+*/
 
 #include <iostream>
-#include "arraylist.h"
 
   template <typename T>
   void ArrayList<T>::grow()
