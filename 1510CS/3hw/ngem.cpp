@@ -2,15 +2,12 @@
 #include <string>
 #include <algorithm>
 
-std::string removeSpaces(std::string str);
-std::string getCommand(const std::string& str);
-void cmdInterpreter(const std::string& cmd, const std::string& str, LinkedList<char> linkedl[]);
+void cmdInterpreter(const std::string& cmd,  LinkedList<char> linkedl[]);
 char transcribe(const char& c);
 
 int main()
 {
   LinkedList<char> structures[5];
-  std::string s = "";
 
   for (int i = 0; i < 5; i++)
   {
@@ -23,41 +20,27 @@ int main()
 
 
 
-  while (getline(std::cin, s))
+  while (true)
   {
-    std::string cmd = getCommand(s);
-    s = removeSpaces(s);
-    cmdInterpreter(cmd, s, structures);
+    std::string cmd = "";
+    std::cin >> cmd;
+
+    cmdInterpreter(cmd, structures);
   }
 
   return 0;
 }
 
 
-std::string removeSpaces(std::string str)
-{
-  str.erase(std::remove_if(str.begin(), str.end(), isspace), str.end());
-
-  return str;
-}
-
-std::string getCommand(const std::string& str)
-{
-  std::string j, temp = "";
-  for (int i = 0; temp != " " && (i < str.size()+1) ; i++)
-  {
-    j.append(temp);
-    temp = str[i];
-  }
-  return j;
-}
-
-void cmdInterpreter(const std::string& cmd, const std::string& str, LinkedList<char> linkedl[])
+void cmdInterpreter(const std::string& cmd, LinkedList<char> linkedl[])
 {
   if (cmd == "append")
   {
-    int id = str[6] - '0';
-    for (int i = 7; i < str.length(); i++)
+
+    int id = 0;
+    std::string str = "";
+    std::cin >> id >> str;
+    for (int i = 0; i < str.length(); i++)
     {
       if (str[i] != 'P' && str[i] != 'O' && str[i] != 'K' && str[i] != 'B' && str[i] != 'Y' && str[i] != 'T' && str[i] != 'M' || id > 5)
       {
@@ -65,7 +48,7 @@ void cmdInterpreter(const std::string& cmd, const std::string& str, LinkedList<c
         return;
       }
     }
-    for (int i = 7; i < str.length(); i++)
+    for (int i = 0; i < str.length(); i++)
     {
       linkedl[id].insert_back(str[i]);
     }
@@ -74,8 +57,8 @@ void cmdInterpreter(const std::string& cmd, const std::string& str, LinkedList<c
   }
   else if(cmd == "trim")
   {
-    int id = str[4] - '0';
-    int start = str[5] - '0';
+    int id = 0,start = 0;
+    std::cin >> id >> start;
     if (id > 5 || start > linkedl[id].size())
     {
       std::cout << "ERROR! trim: invalid parameters." << std::endl;
@@ -88,9 +71,8 @@ void cmdInterpreter(const std::string& cmd, const std::string& str, LinkedList<c
   }
   else if(cmd == "clip")
   {
-    int id = str[4] - '0';
-    int start = str[5] - '0';
-    int stop = str[6] - '0';
+    int id = 0, start = 0, stop = 0;
+    std::cin >> id >> start >> stop;
     if (id > 5 || start > linkedl[id].size() || stop > linkedl[id].size() || start < 0 || stop < 0)
     {
       std::cout << "ERROR! clip: invalid parameters." << std::endl;
@@ -103,9 +85,7 @@ void cmdInterpreter(const std::string& cmd, const std::string& str, LinkedList<c
   }
   else if(cmd == "slice")
   {
-    int id = str[5] - '0';
-    int start = str[6] - '0';
-    int stop = str[7] - '0' - start + 1;
+    int id = 0, start = 0, stop = 0;
     if (id > 5 || start > linkedl[id].size() || stop > linkedl[id].size() || start < 0 || stop < 0)
     {
       std::cout << "ERROR! slice: invalid parameters." << std::endl;
@@ -122,8 +102,8 @@ void cmdInterpreter(const std::string& cmd, const std::string& str, LinkedList<c
   }
   else if(cmd == "copy")
   {
-    int id1 = str[4] - '0';
-    int id2 = str[5] - '0';
+    int id1 = 0, id2 = 0;
+    std::cin >> id1 >> id2;
     if (id1 > 5 || id2 > 5)
     {
       std::cout << "ERROR! copy: invalid parameters." << std::endl;
@@ -133,10 +113,8 @@ void cmdInterpreter(const std::string& cmd, const std::string& str, LinkedList<c
   }
   else if(cmd == "swap")
   {
-     int id1 = str[4] - '0';
-     int id2 = str[6] - '0';
-     int start1 = str[5] - '0';
-     int start2 = str[7] - '0';
+     int id1, id2, start1, start2;
+     std::cin >> id1 >> start1 >> id2 >> start2;
      int size1 = linkedl[id1].size();
      int size2 = linkedl[id2].size();
      if (id1 > 5 || id2 > 5 || start1 > size1 || start2 > size2 || start1 < 0 || start2 < 0)
@@ -163,7 +141,8 @@ void cmdInterpreter(const std::string& cmd, const std::string& str, LinkedList<c
   }
   else if(cmd == "transcribe")
   {
-    int id = str[10]-'0';
+    int id = 0;
+    std::cin >> id;
     int size = linkedl[id].size();
     if (id > 5)
     {
