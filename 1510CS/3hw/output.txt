@@ -2,13 +2,13 @@
 #1, 6: BBYOBB
 #2, 7: OTOTYOM
 #3, 4: BTTB
-#4, 8: MYYBYYYM
+#4, 8: MYYBYYYO
 
 #0, 8: BYOYTMBB
 #1, 12: BBYOYBKKBKBY
 #2, 7: KTPOTOT
-#3, 8: MYYBYYYM
-#4, 8: MYYBYYYM
+#3, 8: MYYBYYYO
+#4, 8: MYYBYYYO
 
 ERROR! trim: invalid parameters.
 ERROR! append: invalid parameters.

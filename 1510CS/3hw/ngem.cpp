@@ -8,6 +8,8 @@ char transcribe(const char& c);
 int main()
 {
   LinkedList<char> structures[5];
+  std::string s = "";
+  std::string cmd = "";
 
   for (int i = 0; i < 5; i++)
   {
@@ -20,11 +22,8 @@ int main()
 
 
 
-  while (true)
+  while (std::cin >> cmd)
   {
-    std::string cmd = "";
-    std::cin >> cmd;
-
     cmdInterpreter(cmd, structures);
   }
 
@@ -64,7 +63,7 @@ void cmdInterpreter(const std::string& cmd, LinkedList<char> linkedl[])
       std::cout << "ERROR! trim: invalid parameters." << std::endl;
       return;
     }
-    for (int i = linkedl[id].size(); i != start ;i-- )
+    for (int i = linkedl[id].size(); i > start ;i-- )
     {
       linkedl[id].remove_back();
     }
@@ -86,6 +85,7 @@ void cmdInterpreter(const std::string& cmd, LinkedList<char> linkedl[])
   else if(cmd == "slice")
   {
     int id = 0, start = 0, stop = 0;
+    std::cin >> id >> start >> stop;
     if (id > 5 || start > linkedl[id].size() || stop > linkedl[id].size() || start < 0 || stop < 0)
     {
       std::cout << "ERROR! slice: invalid parameters." << std::endl;
@@ -95,7 +95,7 @@ void cmdInterpreter(const std::string& cmd, LinkedList<char> linkedl[])
     {
       linkedl[id].remove_front();
     }
-    for (int i = linkedl[id].size();i != stop; i--)
+    for (int i = linkedl[id].size();i > (stop - start + 1); i--)
     {
       linkedl[id].remove_back();
     }
