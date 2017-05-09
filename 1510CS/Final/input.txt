@@ -1,0 +1,6 @@
+1
+NewNewYork 4
+airport 1 museum 3
+museum 2 park 4 robotbar 5
+park 1 robotbar 3
+robotbar 0
