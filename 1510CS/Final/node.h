@@ -1,3 +1,9 @@
+//////
+// Name: Joseph Kuhn
+// Teacher: Dr. Taylor
+// Section: B
+//////
+
 #ifndef NODE_H
 #define NODE_H
 

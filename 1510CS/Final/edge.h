@@ -1,6 +1,12 @@
+//////
+// Name: Joseph Kuhn
+// Teacher: Dr. Taylor
+// Section: B
+//////
+
 #ifndef EDGE_H
 #define EDGE_H
-
+#include <iostream>
 class Node;
 
 class Edge{
@@ -9,6 +15,7 @@ class Edge{
         from = a;
         to = b;
         weight = c;
+//        std::cout << "created edge: " << from << " to " << to << ": " << weight << std::endl;
     }
   
     std::string to;

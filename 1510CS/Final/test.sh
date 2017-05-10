@@ -2,4 +2,4 @@
 
 g++ dijkstra.cpp
 
-./a.out < "input.txt" > "output.txt"
+valgrind ./a.out < "input.txt"
