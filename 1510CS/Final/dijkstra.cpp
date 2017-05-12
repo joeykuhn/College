@@ -41,7 +41,7 @@ int main(){
              }
          }
      }
-     std::cout << dijkstra(graph, findA(graph, "airport")) << std::endl;
+     std::cout << "#" << k+1 << " : " << cityName << ", " << dijkstra(graph, findA(graph, "airport")) << " tokens." << std::endl;
    
     for (int i = 0; i < graph.size(); i++){
       for (int j = 0; j < graph[i]->edges.size();j++){
@@ -84,7 +84,9 @@ int dijkstra(std::vector<Node*> g, int start){
             pq.push(tope->edges[i]);
         }
     }
-    
+    if (g[findA(g,"robotbar")]->dist == -1){
+        g[findA(g,"robotbar")]->dist = pq.top()->weight;
+    }
     return g[findA(g,"robotbar")]->dist;
     
 }
