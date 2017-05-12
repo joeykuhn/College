@@ -15,7 +15,6 @@ class Edge{
         from = a;
         to = b;
         weight = c;
-//        std::cout << "created edge: " << from << " to " << to << ": " << weight << std::endl;
     }
   
     std::string to;

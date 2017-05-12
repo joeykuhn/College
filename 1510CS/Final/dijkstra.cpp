@@ -33,15 +33,15 @@ int main(){
        }
      }
      for (int l = 0; l < graph.size(); l++){
-//         std::cout << "graph[" << l << "]: " << graph[l]->key << std::endl;
          if (graph[l]->edges.size() != 0){
 //             std::cout << "    edges:" << std::endl;
              for (int m = 0; m < graph[l]->edges.size();m++){
-//                 std::cout << "    " << graph[l]->edges[m]->from << " to " << graph[l]->edges[m]->to << std::endl;
              }
          }
      }
-     std::cout << dijkstra(graph, findA(graph, "airport")) << std::endl;
+     std::cout << "#" << k << " : " << cityName << ", " 
+	     << dijkstra(graph, findA(graph, "airport")) << " tokens." 
+	     << std::endl;
    
     for (int i = 0; i < graph.size(); i++){
       for (int j = 0; j < graph[i]->edges.size();j++){
@@ -63,7 +63,6 @@ int dijkstra(std::vector<Node*> g, int start){
     std::priority_queue<Edge*, std::vector<Edge*>, Comparator> pq;
     
     for (int i = 0; i < g[start]->edges.size(); i++){
-//        std::cout << "adding initially: " << g[start]->edges[i]->from << " to " << g[start]->edges[i]->to << std::endl;
         pq.push(g[start]->edges[i]);
         g[findA(g, g[start]->edges[i]->to)]->pi = g[start]->key;
     }
@@ -75,12 +74,12 @@ int dijkstra(std::vector<Node*> g, int start){
         pq.pop();
         for (int i = 0; i < tope->edges.size(); i++){
             Node* temp = g[findA(g,tope->edges[i]->to)];
-            if (temp->dist > topweight + tope->edges[i]->weight || temp->dist == -1){
+            if (temp->dist > topweight + tope->edges[i]->weight 
+	        || temp->dist == -1){
+
                 temp->dist = topweight + tope->edges[i]->weight;
             }
             tope->edges[i]->weight += topweight;
-//            std::cout << "temp is " << temp->key  << ": " << temp->dist << std::endl;
-//            std::cout << "adding: " << tope->edges[i]->from << " to " << tope->edges[i]->to << std::endl;
             pq.push(tope->edges[i]);
         }
     }
