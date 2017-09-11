@@ -9,23 +9,31 @@ Date: 02/10/2017
   template <typename T>
   void ArrayList<T>::grow()
   {
-    T * tempArray;
+    T *tempArray;
     if (m_max == 0)
     {
       m_max++;
     }
-
-    tempArray = new T  [m_max*2];
-    for (int i = 0; i < m_size; i++)
-    {
-      tempArray[i] = m_data[i];
-    }
-    delete[] m_data;
-    m_data = tempArray;
     m_max *= 2;
+    tempArray = new T  [m_max];
+    for (int i = 0; i < m_max; i++)
+    {
+      std::cout << "set " << i << " to null" << std::endl;
+      tempArray[i] = NULL;
+    }
+    if (m_size != 0){
+      for (int i = 0; i < m_max/2; i++)
+      {
+        tempArray[i] = m_data[i];
+      }
+    }
+
+    delete[] m_data;
+
+    m_data = tempArray;
 
     tempArray = NULL;
-
+    
     return;
   }
 
@@ -104,10 +112,10 @@ Date: 02/10/2017
   template <typename T>
   T& ArrayList<T>::operator[](int i)
   {
-    if (i > m_size)
+    if (i > m_max)
       std::cout << "!-- ERROR : PANIC in ARRAYLIST!!.[]  (index out of bounds)" << std::endl;
       return m_errobj;
-
+    std::cout << "bracket: " << i << std::endl;
     return (m_data[i]);
   }
 
@@ -139,19 +147,6 @@ Date: 02/10/2017
     return;
   }
 
-  template <typename T>
-  void ArrayList<T>::insert_back(const T& x)
-  {
-    if (m_size == m_max)
-    {
-      grow();
-
-    }
-
-    m_data[m_size] = x;
-    m_size++;
-    return;
-  }
 
   template <typename T>
   void ArrayList<T>::insert(const T& x, int i)
@@ -161,8 +156,8 @@ Date: 02/10/2017
     {
       grow();
     }
-
-    if ( i > m_size)
+    std::cout << "size of array: " << m_size << std::endl << "max of array: " << m_max << std::endl;
+    if ( i > m_max)
     {
       std::cout << "!-- ERROR : PANIC in ARRAYLIST!!.insert()  (index out of bounds)" << std::endl;
       return;
@@ -194,60 +189,5 @@ Date: 02/10/2017
     }
 
     m_size--;
-    return;
-  }
-
-  template <typename T>
-  void ArrayList<T>::swap(int i, int k)
-  {
-    if (i > m_size || k > m_size || i < 0 || k < 0)
-    {
-      std::cout <<  "!-- ERROR : PANIC in ARRAYLIST!!.swap()  (index out of bounds)" << std::endl;
-      return;
-    }
-
-    T temp;
-    temp = m_data[i];
-    m_data[i] = m_data[k];
-    m_data[k] = temp;
-    return;
-  }
-
-
-  template <typename T>
-  void ArrayList<T>::append(const ArrayList<T>& alist)
-  {
-
-    for (int i = 0; i < alist.size(); i++)
-    {
-
-        if (m_size == m_max)
-        {
-          grow();
-        }
-
-        insert_back(alist.m_data[i]);
-
-      }
-
-    return;
-
-  }
-
-
-  template <typename T>
-  void ArrayList<T>::reverse()
-  {
-
-    for (int i = 0; i < m_size/2; i++)
-    {
-
-        T temp;
-        m_data[i] = temp;
-        m_data[i] = m_data[m_size-i];
-        m_data[m_size-i] = temp;
-
-    }
-
     return;
   }
