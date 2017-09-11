@@ -1,7 +1,7 @@
 1
-NewNewYork 4
-lake 1 airport 5
-airport 2 robotbar 3 park 2
+NewNewYork 5
+lake 1 park 5
+airport 2 lake 10 robotbar 30
+park 1 museum 3
+museum 1 robotbar 8
 robotbar 0
-park 0
-
